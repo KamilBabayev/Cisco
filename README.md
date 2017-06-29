@@ -17,4 +17,15 @@ pip install --upgrade  pip
 pip install paramiko
 ```
 
-@octocat :+1: This PR looks great - it's ready to merge! :shipit:
+* Installation of paramiko on Ubuntu16:
+I use Ubuntu inside of Docker container on above Centos7 host
+```
+docker pull ubuntu
+docker run --name web -itd -p 8000:80 ubuntu
+docker exec -it web bash
+
+apt-get update
+apt-get install python3
+
+```
+
