@@ -4,8 +4,7 @@ I am going to develop netmiko and paramiko based tools and integrate it with Fla
 
 Installation of paramiko to Centos7 is not very smooth. So I write as note for time-saving in future.
 
--Installation of paramiko on Centos7:
-
+* Installation of paramiko on Centos7:
 ```
 yum install epel-release -y
 yum install python-pip   -y
