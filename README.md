@@ -2,5 +2,11 @@
 
 I am going to develop netmiko and paramiko based tools and integrate it with Flask based web appplication. So I want to manage cisco equipment via web interface.
 
-> Kamil Babayev
+Installation of paramiko to Centos7 is not very smooth. So I write as note for time-saving in future.
 
+```
+asas
+as
+a
+s
+```
