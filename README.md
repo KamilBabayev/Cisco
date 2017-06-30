@@ -18,7 +18,7 @@ pip install paramiko
 ```
 
 * Installation of paramiko on Ubuntu16:
-#I use Ubuntu inside of Docker container on above Centos7 host
+I use Ubuntu inside of Docker container on above Centos7 host
 ```
 docker pull ubuntu
 docker run --name web -itd -p 8000:80 ubuntu
@@ -27,5 +27,11 @@ docker exec -it web bash
 apt-get update
 apt-get install python3
 apt-get install python3-pip
+apt-get install python3-openssl
+apt-get install  git vim   -y
+pip3  install --upgrade pip
+pip3 install paramiko
+pip3 install netmiko
+python3 -c 'import paramiko'
 ```
 
