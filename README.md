@@ -32,8 +32,11 @@ apt-get install python3-openssl
 apt-get install  git vim   -y
 pip3  install --upgrade pip
 pip3 install paramiko
+python3 -c 'import paramiko'
+```
+- I will install netmiko and Flask also, I will use Flask for web app, netmiko for connections.
+```
 pip3 install netmiko
 pip3 install flask
-python3 -c 'import paramiko'
 ```
 
