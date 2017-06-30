@@ -17,7 +17,7 @@ pip install --upgrade  pip
 pip install paramiko
 ```
 
-- Installation of paramiko on Ubuntu16:
+- Installation of paramiko on Ubuntu16: </br>
 *I use Ubuntu inside of Docker container on above Centos7 host*
 
 ```
