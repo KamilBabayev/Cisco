@@ -26,9 +26,9 @@ docker run --name web -itd -p 8000:80 ubuntu
 docker exec -it web bash
 
 apt-get update
-apt-get install python3
-apt-get install python3-pip
-apt-get install python3-openssl
+apt-get install python3 -y
+apt-get install python3-pip -y
+apt-get install python3-openssl -y
 apt-get install  git vim   -y
 pip3  install --upgrade pip
 pip3 install paramiko
@@ -43,3 +43,5 @@ pip3 install flask
 *webapp directory will contain dynamic and static web application codes.</br>
 netapp directory will contain python codes for cisco devices interaction.</br> Web application will use this scripts 
 when connection is needed.*
+
+
