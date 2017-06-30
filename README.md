@@ -46,4 +46,5 @@ pip3 install flask
 netapp directory will contain python codes for cisco devices interaction.</br> Web application will use this scripts 
 when connection is needed.*
 
+Our environment is ready we can start coding! :+1:  :shipit:
 
