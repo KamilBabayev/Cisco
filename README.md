@@ -33,6 +33,8 @@ apt-get install  git vim   -y
 pip3  install --upgrade pip
 pip3 install paramiko
 python3 -c 'import paramiko'
+
+apt-get install  iputils-ping net-tools -y
 ```
 - I will install netmiko and Flask also, I will use Flask for web app, netmiko for connections.
 ```
