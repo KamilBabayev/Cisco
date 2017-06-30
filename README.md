@@ -18,7 +18,7 @@ pip install paramiko
 ```
 
 - Installation of paramiko on Ubuntu16: <br />
-*I use Ubuntu inside of Docker container on above Centos7 host*
+I use Ubuntu inside of Docker container on above Centos7 host
 ```
 docker pull ubuntu
 docker run --name web -itd -p 8000:80 ubuntu
