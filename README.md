@@ -40,6 +40,6 @@ pip3 install netmiko
 pip3 install flask
 ```
 
-webapp directory will contain dynamic and static web application codes. </br>
+webapp directory will contain dynamic and static web application codes.
 netapp directory will contain python codes for cisco devices interaction. web application will use this scripts 
 when connection is needed.
