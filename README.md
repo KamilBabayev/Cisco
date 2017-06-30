@@ -33,6 +33,7 @@ apt-get install  git vim   -y
 pip3  install --upgrade pip
 pip3 install paramiko
 pip3 install netmiko
+pip3 install flask
 python3 -c 'import paramiko'
 ```
 
