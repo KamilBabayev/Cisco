@@ -3,15 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Cisco Automaion Tool</title>
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
 </head>
-<body>
-<div>
+<body class="index">
+<div >
 	<form action='/login' method='post'>
 	Username:  <input type="text" name="username"><br>
 	Password:  <input type="password" name="password"><br>
 	<input type="submit">
 	</form>
 </div>
-</body>
 
+</body>
 </html>

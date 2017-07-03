@@ -1,0 +1,35 @@
+.add {
+	background-color: black;
+	color: white; 
+    #text-align: right;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-left: 10px;
+	margin; 0;
+}
+add2 {
+	color: white;
+    text-align: right;
+}
+.list {
+	color: blue;
+	text-align: left;
+	word-spacing: 45em;
+	background-color: #696969;
+	padding: 10px;
+}
+div.devices {
+	background-color: green;
+}
+
+.index {
+	background-color: black;
+   	margin-top: 25em;
+   	margin-left: 50em;
+}
+
+.cisco {
+	#padding-top: 10px;
+}
+
+

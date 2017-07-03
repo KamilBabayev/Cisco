@@ -29,6 +29,9 @@ def addnewdevice():
 @app.route('/addnewcommand')
 def addnewcommand():
     return render_template('addnewcommand.html')
+@app.route('/ciscoconnect')
+def ciscoconnect():
+	return "deviceas"
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=80)

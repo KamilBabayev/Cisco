@@ -3,17 +3,25 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Main App</title>
-	<link rel="stylesheet" type="text/css" href="my.css">
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
 </head>
 <body>
-<div>
-	Devices
-	Commands 
+<div class="add">
+	<img class="cisco" src="{{url_for('static', filename='cisco.png')}}" style="width:120px;height:45px; margin-right:1470px;" />
+	<a class="add" href='/addnewdevice'>Add New Device</a>
+	<a class="add" href='/addnewcommand'>Add New Command</a>
 </div>
-
-<div> 
-<a href='/addnewdevice'>AddNewDevice</a>
-<a href='/addnewcommand'>AddNewCommand</a>
+<div class="list">
+	Devices
+    Commands
+</div>
+<div>
+<form action="/ciscoconnect" method='GET'>
+  <input type="checkbox" name="switch01" value="switch01">Switch01    10.50.5.57  Core switch Active <br>
+  <input type="checkbox" name="switch02" value="switch02">Switch02    10.50.5.58  Core switch Passive
+  <input type="checkbox" name="command01" value="show version">show version  shows  cisco device version information <br>
+  <input type="submit" value="Submit">
+</form>
 </div>
 </body>
 </html>
