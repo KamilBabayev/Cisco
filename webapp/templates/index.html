@@ -6,11 +6,13 @@
 	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
 </head>
 <body class="index">
-<div >
+<div class="login">
 	<form action='/login' method='post'>
-	Username:  <input type="text" name="username"><br>
-	Password:  <input type="password" name="password"><br>
-	<input type="submit">
+		<p class="username">Username: </br>
+    	<input class="field" type="text" name="username" required="required">
+		<p class="username">Password:<br>
+		<input class='field' type="password" name="password" required="required"><br><br>
+		<input class="submit" value="Login" type="submit">
 	</form>
 </div>
 

@@ -24,12 +24,33 @@ div.devices {
 
 .index {
 	background-color: black;
-   	margin-top: 25em;
-   	margin-left: 50em;
+#   	margin-top: 25em;
+#   	margin-left: 50em;
 }
 
 .cisco {
 	#padding-top: 10px;
 }
 
+.login {
+	border: 1px solid grey;
+	padding-left: 195px;
+	padding-right: 100px;
+	padding-bottom: 60px;
+	padding-top: 50px;
+	margin: 17em 40em 2em 40em;
+}
+.username {
+	color: white;
+	font-size: 20px;
+    font-family: "Times New Roman", Times, serif;	
+}
+.field {
+	padding: 8px 25px 8px 4px;
+}
+.submit {
+	padding: 8px 164px 8px 4px;
+	#background-color: #99ff33;
+	background-color: #99cc00;
+}
 
