@@ -10,10 +10,14 @@ app = Flask(__name__)
 def ciscoconnect1():
     data = request.get_data()
     data = str(data)
-    ip_addresses = re.findall(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', data)
-    for ip in ip_addresses:
-        print(ip)
-    return data
+    #ip_addresses = re.findall(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', data)
+    data = data.strip('b').split('&')
+    devices_and_commands = []
+    for i in data:
+         devices_and_commands.append(i.split('=')[1])
+    result = devices_and_commands
+    print(devices_and_commands)
+    return "da"
 
 @app.route('/')
 def index():
