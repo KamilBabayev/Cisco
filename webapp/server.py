@@ -17,7 +17,7 @@ def ciscoconnect1():
          devices_and_commands.append(i.split('=')[1])
     result = devices_and_commands
     print(devices_and_commands)
-    return "da"
+    return render_template("cisco_output.html")
 
 @app.route('/')
 def index():
