@@ -3,21 +3,9 @@ import subprocess
 from flask import Flask
 from flask import request, render_template, redirect, url_for
 import re
+import paramiko
 
 app = Flask(__name__)
-
-@app.route('/ciscoconnect', methods=['GET', 'POST'])
-def ciscoconnect1():
-    data = request.get_data()
-    data = str(data)
-    #ip_addresses = re.findall(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', data)
-    data = data.strip('b').split('&')
-    devices_and_commands = []
-    for i in data:
-         devices_and_commands.append(i.split('=')[1])
-    result = devices_and_commands
-    print(devices_and_commands)
-    return render_template("cisco_output.html")
 
 @app.route('/')
 def index():
@@ -44,9 +32,20 @@ def addnewdevice():
 @app.route('/addnewcommand')
 def addnewcommand():
     return render_template('addnewcommand.html')
-@app.route('/ciscoconnect')
-def ciscoconnect():
-	return 
+
+@app.route('/ciscoconnect', methods=['GET', 'POST'])
+def ciscoconnect1():
+    data = request.get_data()
+    data = str(data)
+    #ip_addresses = re.findall(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', data)
+    data = data.strip('b').split('&')
+    devices_and_commands = []
+    for i in data:
+         devices_and_commands.append(i.split('=')[1])
+    result = devices_and_commands
+    command= devices_and_commands[len(devices_and_commands)-1]
+    print(devices_and_commands, "", "Command: ", command)
+    return render_template("cisco_output.html", output=result)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=80)
