@@ -37,7 +37,7 @@ div.devices {
 	padding-left: 195px;
 	padding-right: 100px;
 	padding-bottom: 60px;
-	padding-top: 50px;
+	padding-top: 40px;
 	margin: 17em 40em 2em 40em;
 }
 .username {
@@ -49,8 +49,10 @@ div.devices {
 	padding: 8px 25px 8px 4px;
 }
 .submit {
-	padding: 8px 164px 8px 4px;
+	padding: 8px 84px 8px 84px;
 	#background-color: #99ff33;
 	background-color: #99cc00;
+	color: white;
+	text-align: center;
 }
 

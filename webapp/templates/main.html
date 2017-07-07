@@ -16,12 +16,16 @@
     Commands
 </div>
 <div>
-<form action="/ciscoconnect" method='GET'>
-  <input type="checkbox" name="switch01" value="switch01">Switch01    10.50.5.57  Core switch Active <br>
-  <input type="checkbox" name="switch02" value="switch02">Switch02    10.50.5.58  Core switch Passive
-  <input type="checkbox" name="command01" value="show version">show version  shows  cisco device version information <br>
+<form action="/ciscoconnect" method='POST'>
+  <input type="checkbox" name="switch01" value="10.50.5.57">Switch01    10.50.5.57  Core switch Active <br>
+  <input type="checkbox" name="switch02" value="10.50.5.58">Switch02    10.50.5.58  Core switch Passive <br>
+  <input type="checkbox" name="switch03" value="10.50.5.59">Switch03    10.50.5.58  Core switch Backup <br>
+  <!-- <input type="checkbox" name="command01" value="show version">show version  shows  cisco device version information <br> -->
   <input type="submit" value="Submit">
 </form>
 </div>
+
+<script>
+</script>
 </body>
 </html>

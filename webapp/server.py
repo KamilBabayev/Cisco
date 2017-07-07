@@ -1,8 +1,19 @@
 #!/usr/bin/env python3
+import subprocess
 from flask import Flask
 from flask import request, render_template, redirect, url_for
+import re
 
 app = Flask(__name__)
+
+@app.route('/ciscoconnect', methods=['GET', 'POST'])
+def ciscoconnect1():
+    data = request.get_data()
+    data = str(data)
+    ip_addresses = re.findall(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', data)
+    for ip in ip_addresses:
+        print(ip)
+    return data
 
 @app.route('/')
 def index():
@@ -31,7 +42,7 @@ def addnewcommand():
     return render_template('addnewcommand.html')
 @app.route('/ciscoconnect')
 def ciscoconnect():
-	return "deviceas"
+	return 
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=80)
