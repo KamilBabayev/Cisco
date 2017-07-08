@@ -43,14 +43,18 @@ def ciscoconnect1():
     for i in data:
          devices_and_commands.append(i.split('=')[1])
     result = devices_and_commands
+    devices= devices_and_commands[:len(devices_and_commands)-1]
+    devices = str(devices)
+    devices = devices.strip(']').lstrip('[').strip("'")
+    print(devices)
     command= devices_and_commands[len(devices_and_commands)-1]
-    print(devices_and_commands, "", "Command: ", command)
-    p = subprocess.Popen(['/Cisco/netapp/connector.py', '10.50.5.57'], stdout=subprocess.PIPE )
+    command = command.rstrip("'").replace('+', ' ')
+    print(devices_and_commands, "", "Command: ", command, "Devices: ", devices)
+    p = subprocess.Popen(['/Cisco/netapp/connector.py', devices, command], stdout=subprocess.PIPE )
     out, err = p.communicate()
     out = str(out)
     for i in out.split('\\n'):
         print(i)
-    
     return render_template("cisco_output.html", output=out)
 	
 
