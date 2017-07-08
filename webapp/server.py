@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import subprocess
+import subprocess, os
 from flask import Flask
 from flask import request, render_template, redirect, url_for
 import re
@@ -45,7 +45,14 @@ def ciscoconnect1():
     result = devices_and_commands
     command= devices_and_commands[len(devices_and_commands)-1]
     print(devices_and_commands, "", "Command: ", command)
-    return render_template("cisco_output.html", output=result)
+    p = subprocess.Popen(['/Cisco/netapp/connector.py', '10.50.5.57'], stdout=subprocess.PIPE )
+    out, err = p.communicate()
+    out = str(out)
+    for i in out.split('\\n'):
+        print(i)
+    
+    return render_template("cisco_output.html", output=out)
+	
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=80)
