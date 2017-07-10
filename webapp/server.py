@@ -11,6 +11,10 @@ app = Flask(__name__)
 def index():
 	return render_template("index.html")
 
+@app.route('/new')
+def new():
+	return render_template('new.html')
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'GET':
@@ -53,6 +57,12 @@ def ciscoconnect1():
     p = subprocess.Popen(['/Cisco/netapp/connector.py', devices, command], stdout=subprocess.PIPE )
     out, err = p.communicate()
     out = str(out)
+    #print(out)
+    data = []
+    for i in out.split('\\n'):
+       data.append(i)
+    print(data)
+    print('----------------------------------')
     for i in out.split('\\n'):
         print(i)
     return render_template("cisco_output.html", output=out)
