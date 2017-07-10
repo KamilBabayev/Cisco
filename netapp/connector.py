@@ -10,6 +10,7 @@ ssh_conn.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 ssh_conn.connect(host, 
 				username='cisco', 
 				password='cisco',
+                timeout=10,
 				look_for_keys=False, 
 				allow_agent=False)
 

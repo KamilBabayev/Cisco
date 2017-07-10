@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-import subprocess, os
+from subprocess import PIPE, Popen
 from flask import Flask
 from flask import request, render_template, redirect, url_for
-import re
+#import re
 import paramiko
 
 app = Flask(__name__)
@@ -54,7 +54,8 @@ def ciscoconnect1():
     command= devices_and_commands[len(devices_and_commands)-1]
     command = command.rstrip("'").replace('+', ' ')
     print(devices_and_commands, "", "Command: ", command, "Devices: ", devices)
-    p = subprocess.Popen(['/Cisco/netapp/connector.py', devices, command], stdout=subprocess.PIPE )
+    #p = subprocess.Popen(['/Cisco/netapp/connector.py', devices, command], stdout=subprocess.PIPE )
+    p = Popen(['/Cisco/netapp/connector.py', devices, command], stdout=PIPE )
     out, err = p.communicate()
     out = str(out)
     #print(out)
