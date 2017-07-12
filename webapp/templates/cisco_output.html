@@ -1,10 +1,31 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+<style>
+.demo {
+	background-color: black;
+}
 
-{% block content %}
+.output{
+    white-space: pre;
+    font-size: 20px;
+}
+</style>
 
-{% for line in output %}
-	{{ line|safe|indent }}
+
+{% for i in output %}
+        <div><div class="output">{{ i }}</div></div>
 {% endfor %}
 
+<!--
+{% for i in output %}
+        <div class="output">{{ i }}</div>
+{% endfor %}
+-->
 
-{% endblock %}
+
+
+
+
+</body>
+</html>
+

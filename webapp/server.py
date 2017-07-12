@@ -40,6 +40,7 @@ def addnewcommand():
 @app.route('/ciscoconnect', methods=['GET', 'POST'])
 def ciscoconnect1():
     data = request.get_data()
+    print(data)
     data = str(data)
     #ip_addresses = re.findall(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', data)
     data = data.strip('b').split('&')
@@ -47,26 +48,31 @@ def ciscoconnect1():
     for i in data:
          devices_and_commands.append(i.split('=')[1])
     result = devices_and_commands
+    print(result)
     devices= devices_and_commands[:len(devices_and_commands)-1]
+    print(devices)
     devices = str(devices)
     devices = devices.strip(']').lstrip('[').strip("'")
     print(devices)
+    print('###################################################################')
     command= devices_and_commands[len(devices_and_commands)-1]
     command = command.rstrip("'").replace('+', ' ')
     print(devices_and_commands, "", "Command: ", command, "Devices: ", devices)
     #p = subprocess.Popen(['/Cisco/netapp/connector.py', devices, command], stdout=subprocess.PIPE )
+    print(devices, "------")
+    print(command, "------")
     p = Popen(['/Cisco/netapp/connector.py', devices, command], stdout=PIPE )
     out, err = p.communicate()
     out = str(out)
-    #print(out)
+    #out = "Gi0/1                                                                         notconnect   1            auto   auto 10/100/1000BaseTX"
+    print(out)
     data = []
     for i in out.split('\\n'):
        data.append(i)
-    print(data)
     print('----------------------------------')
     for i in out.split('\\n'):
         print(i)
-    return render_template("cisco_output.html", output=out)
+    return render_template("cisco_output.html", output=data)
 	
 
 if __name__ == '__main__':
