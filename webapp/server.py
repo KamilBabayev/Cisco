@@ -42,6 +42,10 @@ def ciscoconnect1():
     data = request.get_data()
     print(data)
     data = str(data)
+    index = data.index("customcommand")
+    if len(data[index:]) < 16:
+         data = data[0:-len(data[index:])-1]
+    print(data, type(data))
     #ip_addresses = re.findall(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', data)
     data = data.strip('b').split('&')
     devices_and_commands = []
@@ -64,7 +68,7 @@ def ciscoconnect1():
     p = Popen(['/Cisco/netapp/connector.py', devices, command], stdout=PIPE )
     out, err = p.communicate()
     out = str(out)
-    #out = "Gi0/1                                                                         notconnect   1            auto   auto 10/100/1000BaseTX"
+    out = out.lstrip('b').strip()
     print(out)
     data = []
     for i in out.split('\\n'):
