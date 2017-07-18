@@ -63,6 +63,7 @@ def ciscoconnect1():
     command = command.rstrip("'").replace('+', ' ')
     print(devices_and_commands, "", "Command: ", command, "Devices: ", devices)
     #p = subprocess.Popen(['/Cisco/netapp/connector.py', devices, command], stdout=subprocess.PIPE )
+    command = command.replace("%7C","|").replace("%2F", "/")
     print(devices, "------")
     print(command, "------")
     p = Popen(['/Cisco/netapp/connector.py', devices, command], stdout=PIPE )
