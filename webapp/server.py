@@ -4,10 +4,15 @@ from flask import Flask
 from flask import request, render_template, redirect, url_for
 #import re
 import paramiko
-from flask_sqlalchemy import SQLAlchemy
+#from flask_sqlalchemy import SQLAlchemy
+#from models import User
+from models import db
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+db.init_app(app)
+#db = SQLAlchemy(app)
+
 
 @app.route('/')
 def index():
@@ -22,6 +27,7 @@ def login():
     if request.method == 'GET':
        return redirect('/')
     if request.method == 'POST':
+        #username = User.query.filter_by(username='admin').first()
         username = request.form['username']
         password = request.form['password']
         if username == 'admin' and password == 'admin123':

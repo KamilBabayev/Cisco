@@ -1,16 +1,12 @@
-#!/usr/bin/env python3
-from flask_sqlalchemy import SQLAlchemy
-from server import app
-from model import db
-from model import User
-from model import Command
+# This script is intended for first time database
+# creation and preparation
 
-db = SQLAlchemy(app)
+
+from models import db
+from models import User
+
 db.create_all()
-
 admin = User('admin', 'admin123')
-
 db.session.add(admin)
 db.session.commit()
-
 
