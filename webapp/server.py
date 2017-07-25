@@ -5,8 +5,7 @@ from flask import request, render_template, redirect, url_for
 #import re
 import paramiko
 #from flask_sqlalchemy import SQLAlchemy
-#from models import User
-from models import db
+from models import db, User, Command
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
@@ -27,17 +26,22 @@ def login():
     if request.method == 'GET':
        return redirect('/')
     if request.method == 'POST':
-        #username = User.query.filter_by(username='admin').first()
+        adminuser = User.query.filter_by(username='admin').first()
         username = request.form['username']
         password = request.form['password']
-        if username == 'admin' and password == 'admin123':
+        #if username == 'admin' and password == 'admin123':
+        if username == adminuser.username and password == adminuser.password:
              return redirect(url_for('main'))
         else:
             return render_template('authfail.html')
 
 @app.route('/main')
 def main():
-	return render_template('main.html')
+    cmdlist = [] 
+    commands = Command.query.all()
+    for i in commands: 
+        cmdlist.append(i.command)
+    return render_template('main.html', commands = cmdlist)
 @app.route('/addnewdevice')
 def addnewdevice():
     return render_template('addnewdevice.html')
