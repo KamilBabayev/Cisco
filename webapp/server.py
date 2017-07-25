@@ -4,8 +4,10 @@ from flask import Flask
 from flask import request, render_template, redirect, url_for
 #import re
 import paramiko
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 
 @app.route('/')
 def index():
@@ -73,7 +75,8 @@ def ciscoconnect1():
     print(out)
     data = []
     for i in out.split('\\n'):
-       data.append(i)
+        i = i.replace(' ', "&nbsp;")
+        data.append(i)
     print('----------------------------------')
     for i in out.split('\\n'):
         print(i)
