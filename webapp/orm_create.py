@@ -1,6 +1,7 @@
 from models import db
 from models import User
 from models import Command
+from models import Device
 
 db.create_all()
 admin = User('admin', 'admin123')
@@ -12,9 +13,19 @@ showversion = Command('show version', 'Show IOS Version', 'Show IOS Version')
 showipintbrf = Command('show ip interface brief', 'show ip interface brief', 'Shows interface info as brief form')
 showmactable = Command('show mac address-table', 'show mac address-table', 'Shows MAC TABLE OF CISCO Device')
 showprocmem = Command('show  processes memory', 'SHOW MEM PROCESSES', 'This command show memory info of device')
+
+testcoresw01 = Device('10.50.5.57', 'testswitch01', 'Test Core Switch01')
+testcoresw02 = Device('10.50.5.58', 'testswitch02', 'Test Core Switch02')
+
 db.session.add(showversion)
 db.session.add(showintstatus)
 db.session.add(showipintbrf)
 db.session.add(showmactable)
 db.session.add(showprocmem)
 db.session.commit()
+
+db.session.add(testcoresw01)
+db.session.add(testcoresw02)
+db.session.commit()
+
+

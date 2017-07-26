@@ -5,7 +5,7 @@ from flask import request, render_template, redirect, url_for
 #import re
 import paramiko
 #from flask_sqlalchemy import SQLAlchemy
-from models import db, User, Command
+from models import db, User, Command, Device
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
@@ -43,17 +43,28 @@ def main():
     desc=[]
     name=[]
     command = []
-    data = []
-    commands = Command.query.all()
-    for i in commands: command.append(i.command)
-    for i in commands: name.append(i.name)
-    for i in commands: desc.append(i.desc)
+    commands = []
+    commands_query = Command.query.all()
+    for i in commands_query: command.append(i.command)
+    for i in commands_query: name.append(i.name)
+    for i in commands_query: desc.append(i.desc)
     w =[j for i in zip(command,name,desc) for j in i]
-    for i in list(chunks(w, 3)): data.append(i)
-    return render_template('main.html', commands = data)
+    for i in list(chunks(w, 3)): commands.append(i)
+
+    name,desc,ip,devices = [],[],[],[]
+    dev_query = Device.query.all()
+    for i in dev_query: ip.append(i.ip)
+    for i in dev_query: name.append(i.name)
+    for i in dev_query: desc.append(i.desc)
+    x =[j for i in zip(ip,name,desc) for j in i]
+    for i in list(chunks(x, 3)): devices.append(i)
+    
+    return render_template('main.html', commands = commands, devices=devices)
+
 @app.route('/addnewdevice')
 def addnewdevice():
     return render_template('addnewdevice.html')
+
 @app.route('/addnewcommand')
 def addnewcommand():
     return render_template('addnewcommand.html')
