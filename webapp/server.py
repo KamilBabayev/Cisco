@@ -37,11 +37,20 @@ def login():
 
 @app.route('/main')
 def main():
-    cmdlist = [] 
+    def chunks(l, n):
+        for i in range(0, len(l), n):
+            yield l[i:i+n]
+    desc=[]
+    name=[]
+    command = []
+    data = []
     commands = Command.query.all()
-    for i in commands: 
-        cmdlist.append(i.command)
-    return render_template('main.html', commands = cmdlist)
+    for i in commands: command.append(i.command)
+    for i in commands: name.append(i.name)
+    for i in commands: desc.append(i.desc)
+    w =[j for i in zip(command,name,desc) for j in i]
+    for i in list(chunks(w, 3)): data.append(i)
+    return render_template('main.html', commands = data)
 @app.route('/addnewdevice')
 def addnewdevice():
     return render_template('addnewdevice.html')
