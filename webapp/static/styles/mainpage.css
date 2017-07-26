@@ -49,6 +49,10 @@ div.devices {
 .field {
 	padding: 8px 25px 8px 4px;
 }
+.newdevice {
+    padding: 8px 20px 8px 50px;
+}
+
 .submit {
 	padding: 8px 84px 8px 84px;
 	#background-color: #99ff33;

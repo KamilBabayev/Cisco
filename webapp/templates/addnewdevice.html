@@ -1,9 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h2> Add New Device </h2>
 <div>
-    Add New Device  <br>
-    Add New Device Group
+        <form action="/addnewdevice" method='POST' accept-charset="UTF-8">
+                <p><b>Ip Adress:</b> </br>
+        		<input class="field" type="text" name="ipaddress" required="required">
+                <p><b>Name:</b><br>
+                <input class='field' type="text" name="name" required="required"><br>
+                <p><b>Description:</b><br> 
+                <input class='field' type="textbox" name="description"><br><br>
+                <input class="submit"  value="Add Device" type="submit">
+        </form>
 </div>
 
 {% endblock %}

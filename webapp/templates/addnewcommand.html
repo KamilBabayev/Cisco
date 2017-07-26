@@ -1,9 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h2> Add New Command </h2>
 <div>
-    Add New Command  <br>
-    Add New Command Set
+        <form action=/addnewdevice>
+                <p><b>Command:</b> </br>
+        		<input class="field" type="text" name="command" required="required">
+                <p><b>Name:</b><br>
+                <input class='field' type="text" name="name" required="required"><br>
+                <p><b>Description:</b><br> 
+                <input class='field' type="textbox" name="description"><br><br>
+                <input class="submit"  value="Add Command" type="submit">
+        </form>
 </div>
 
 {% endblock %}

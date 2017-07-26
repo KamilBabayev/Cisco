@@ -45,24 +45,44 @@ def main():
     command = []
     commands = []
     commands_query = Command.query.all()
-    for i in commands_query: command.append(i.command)
-    for i in commands_query: name.append(i.name)
-    for i in commands_query: desc.append(i.desc)
+    for i in commands_query: 
+        command.append(i.command)
+    for i in commands_query: 
+        name.append(i.name)
+    for i in commands_query: 
+        desc.append(i.desc)
     w =[j for i in zip(command,name,desc) for j in i]
-    for i in list(chunks(w, 3)): commands.append(i)
+    for i in list(chunks(w, 3)): 
+        commands.append(i)
 
     name,desc,ip,devices = [],[],[],[]
     dev_query = Device.query.all()
-    for i in dev_query: ip.append(i.ip)
-    for i in dev_query: name.append(i.name)
-    for i in dev_query: desc.append(i.desc)
+    for i in dev_query: 
+        ip.append(i.ip)
+    for i in dev_query: 
+        name.append(i.name)
+    for i in dev_query: 
+        desc.append(i.desc)
     x =[j for i in zip(ip,name,desc) for j in i]
-    for i in list(chunks(x, 3)): devices.append(i)
+    for i in list(chunks(x, 3)): 
+        devices.append(i)
     
     return render_template('main.html', commands = commands, devices=devices)
 
-@app.route('/addnewdevice')
+@app.route('/addnewdevice', methods=['GET', 'POST'])
 def addnewdevice():
+    data = request.get_data()
+    data = str(data)
+    data = data.strip('b').split('&')
+    x,y = [],[]
+    if request.method == 'POST':
+        for i in data:
+            #print(i.split('=')[1].rstrip("'").replace("+", " "))
+            x.append(i.split('=')[1].rstrip("'").replace("+", " "))
+        ip,name,desc = x[0],x[1], x[2]
+        print(ip,name,desc)
+        return redirect(url_for('main'))
+	
     return render_template('addnewdevice.html')
 
 @app.route('/addnewcommand')
