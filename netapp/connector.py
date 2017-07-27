@@ -2,6 +2,7 @@
 import paramiko
 from sys import argv
 import re
+
 host, command = argv[1], argv[2]
 hosts = re.findall(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', host)
 

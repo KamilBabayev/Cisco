@@ -164,3 +164,12 @@ if __name__ == '__main__':
 
 
 
+"""
+l = Command.query.filter_by(id=6).first()
+l.command = "sh run | sec Gi/13"
+db.session.commit()
+
+
+db.session.delete(l)
+db.session.commit()
+"""
