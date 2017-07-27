@@ -44,6 +44,7 @@ def main():
     name=[]
     command = []
     commands = []
+    desc, name, command, commands = [], [], [], []
     commands_query = Command.query.all()
     for i in commands_query: 
         command.append(i.command)
@@ -82,20 +83,34 @@ def addnewdevice():
         ip, name, desc = x[0],x[1], x[2]
         print(ip, name, desc)
         newdevice = Device(ip, name, desc)
-        msg = "Device has been added successfully"
         try:
             db.session.add(newdevice)
             db.session.commit()
-            redirect(url_for('main', msg=msg))
-            msg = request.args.get('msg')
-            return render_template('addnewdevice.html')
+            return render_template('addnewdevice.html', success_msg="Device added successfully")
         except:
-            return redirect(url_for('login'))
-            #return render_template('addnewdevice.html', msg='Successfully Added')
+            return render_template('addnewdevice.html', fail_msg="Error occured. Can not add device")
     return render_template('addnewdevice.html')
 
-@app.route('/addnewcommand')
+@app.route('/addnewcommand', methods=['GET', 'POST'])
 def addnewcommand():
+    data = request.get_data()
+    data = str(data)
+    data = data.strip('b').split('&')
+    x,y = [],[]
+    if request.method == 'POST':
+        for i in data:
+            #print(i.split('=')[1].rstrip("'").replace("+", " "))
+            x.append(i.split('=')[1].rstrip("'").replace("+", " "))
+        command, name, desc = x[0],x[1], x[2]
+        print(command, name, desc)
+        newcommand = Command(command, name, desc)
+        print(newcommand, command,name,desc, "demello")
+        try:
+            db.session.add(newcommand)
+            db.session.commit()
+            return render_template('addnewcommand.html', success_msg="Command added successfully")
+        except:
+            return render_template('addnewcommand.html', fail_msg="Error occured.Can not add new command")
     return render_template('addnewcommand.html')
 
 @app.route('/ciscoconnect', methods=['GET', 'POST'])
@@ -117,7 +132,7 @@ def ciscoconnect1():
     devices= devices_and_commands[:len(devices_and_commands)-1]
     print(devices)
     devices = str(devices)
-    devices = devices.strip(']').lstrip('[').strip("'")
+    #devices = devices.strip(']').lstrip('[').strip("'")
     print(devices)
     print('###################################################################')
     command= devices_and_commands[len(devices_and_commands)-1]
@@ -136,11 +151,16 @@ def ciscoconnect1():
     for i in out.split('\\n'):
         i = i.replace(' ', "&nbsp;")
         data.append(i)
+
     print('----------------------------------')
     for i in out.split('\\n'):
         print(i)
+ 
     return render_template("cisco_output.html", output=data)
 	
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=80)
+
+
+

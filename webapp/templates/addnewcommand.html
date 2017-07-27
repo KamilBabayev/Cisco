@@ -3,7 +3,7 @@
 {% block content %}
 <h2> Add New Command </h2>
 <div>
-        <form action=/addnewdevice>
+        <form action="/addnewcommand" method='POST' accept-charset="UTF-8">
                 <p><b>Command:</b> </br>
         		<input class="field" type="text" name="command" required="required">
                 <p><b>Name:</b><br>
@@ -13,5 +13,13 @@
                 <input class="submit"  value="Add Command" type="submit">
         </form>
 </div>
+
+<div>
+   {{ success_msg }}
+</div>
+<div>
+   {{ fail_msg }}
+</div>
+
 
 {% endblock %}

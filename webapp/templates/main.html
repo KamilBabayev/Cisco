@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="add">
-	<img class="cisco" src="{{url_for('static', filename='cisco.png')}}" style="width:120px;height:45px; margin-right:1420px;" />
+    <img class="cisco" src="{{url_for('static', filename='cisco.png')}}" style="width:120px;height:45px; margin-right:1420px;" />
 	<a class="add" href='/addnewdevice'>Add New Device</a>
 	<a class="add" href='/addnewcommand'>Add New Command</a>
 </div>
@@ -23,7 +23,7 @@
   <br><br><br>
 
   {% for i in commands %}
-  	<input type="checkbox" name="showinterfacesstatus" value="{{ i[0] }}">{{ i[1] }}:      {{ i[2] }} <br>
+  	<input type="checkbox" name="{{ i[1] }}" value="{{ i[0] }}">{{ i[0] }} {{ i[1] }}:      {{ i[2] }} <br>
   {% endfor %}
   <br>
 
