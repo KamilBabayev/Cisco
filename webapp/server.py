@@ -43,7 +43,7 @@ def main():
     desc=[]
     name=[]
     command = []
-    commands = []
+    global commands
     desc, name, command, commands = [], [], [], []
     commands_query = Command.query.all()
     for i in commands_query: 
@@ -56,6 +56,7 @@ def main():
     for i in list(chunks(w, 3)): 
         commands.append(i)
 
+    global devices
     name,desc,ip,devices = [],[],[],[]
     dev_query = Device.query.all()
     for i in dev_query: 
@@ -69,6 +70,22 @@ def main():
         devices.append(i)
     
     return render_template('main.html', commands = commands, devices=devices)
+
+@app.route('/editdevice', methods=['GET', 'POST'])
+def editdevice():
+    data = request.get_data()
+    data = str(data)
+    print(data)
+    if request.method == 'POST':
+        data = data.strip('b').strip("'").split("=")[1]
+        print(data)
+    #data = data.strip('b').strip("'").split('=')[1]
+    #print(data)
+    return render_template('editdevice.html', devices=devices)
+
+@app.route('/editcommand', methods=['GET', 'POST'])
+def editcommand():
+    return render_template('editcommand.html', commands=commands)
 
 @app.route('/addnewdevice', methods=['GET', 'POST'])
 def addnewdevice():
@@ -157,6 +174,7 @@ def ciscoconnect1():
         print(i)
  
     return render_template("cisco_output.html", output=data)
+
 	
 
 if __name__ == '__main__':

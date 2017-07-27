@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Main App</title>
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
+</head>
+<body>
+<div class="add">
+	<img class="cisco" src="{{url_for('static', filename='cisco.png')}}" style="width:120px;height:45px; margin-right:1420px;" />
+	<a class="add" href='/addnewdevice'>Add/Edit Device</a>
+	<a class="add" href='/addnewcommand'>Add/Edit Command</a>
+</div>
+<div class="list">
+    Devices
+    Commands
+</div>
+
+<div>
+{% block content %}
+ <h2> Edit / Delete Device </h2>
+<form action="/editdevice" method='POST' accept-charset="UTF-8" >
+  {% for i in devices %}
+  <input type="checkbox" name="{{ i[1] }}" value="{{ i[0] }}">{{ i[1] }}    {{ i[0] }}  {{ i[2] }} <br>
+  {% endfor %}
+  <input type="submit" value="Edit">
+  <input type="submit" value="Delete"><br>
+<br>
+
+</form>
+{{ msg }}
+
+{% endblock %}   
+</div>
+
+    <a  href="/main">Home Page </a>
+</body>
+</html>
