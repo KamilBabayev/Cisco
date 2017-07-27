@@ -79,10 +79,19 @@ def addnewdevice():
         for i in data:
             #print(i.split('=')[1].rstrip("'").replace("+", " "))
             x.append(i.split('=')[1].rstrip("'").replace("+", " "))
-        ip,name,desc = x[0],x[1], x[2]
-        print(ip,name,desc)
-        return redirect(url_for('main'))
-	
+        ip, name, desc = x[0],x[1], x[2]
+        print(ip, name, desc)
+        newdevice = Device(ip, name, desc)
+        msg = "Device has been added successfully"
+        try:
+            db.session.add(newdevice)
+            db.session.commit()
+            redirect(url_for('main', msg=msg))
+            msg = request.args.get('msg')
+            return render_template('addnewdevice.html')
+        except:
+            return redirect(url_for('login'))
+            #return render_template('addnewdevice.html', msg='Successfully Added')
     return render_template('addnewdevice.html')
 
 @app.route('/addnewcommand')
