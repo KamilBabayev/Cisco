@@ -79,6 +79,10 @@ def editdevice():
     if request.method == 'POST':
         data = data.strip('b').strip("'").split("=")[1]
         print(data)
+        devip = Device.query.filter_by(ip=data).first()
+        db.session.delete(devip)
+        db.session.commit()
+        return render_template('editdevice.html', success_msg="Deviced deleted successfully")
     #data = data.strip('b').strip("'").split('=')[1]
     #print(data)
     return render_template('editdevice.html', devices=devices)
