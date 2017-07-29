@@ -78,11 +78,24 @@ def editdevice():
     print(data)
     if request.method == 'POST':
         data = data.strip('b').strip("'").split("=")[1]
-        print(data)
-        devip = Device.query.filter_by(ip=data).first()
+        data = data.split('&')
+        #data = data.split('&')[0]
+        ipaddr, button = data[0], data[1]
+        print(ipaddr, button)
+        """
+        devip = Device.query.filter_by(ip=ipaddr).first()
         db.session.delete(devip)
         db.session.commit()
-        return render_template('editdevice.html', success_msg="Deviced deleted successfully")
+        """
+        if button == "delete":
+            devip = Device.query.filter_by(ip=ipaddr).first()
+            db.session.delete(devip)
+            db.session.commit()
+            return render_template('editdevice.html', success_msg="Deviced deleted successfully")
+        elif button == "edit":
+            print('EDIT')
+            return render_template('editdevice.html', success_msg="Deviced EDITED successfully")
+        #return render_template('editdevice.html', success_msg="Deviced deleted successfully")
     #data = data.strip('b').strip("'").split('=')[1]
     #print(data)
     return render_template('editdevice.html', devices=devices)
@@ -185,13 +198,3 @@ if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=80)
 
 
-
-"""
-l = Command.query.filter_by(id=6).first()
-l.command = "sh run | sec Gi/13"
-db.session.commit()
-
-
-db.session.delete(l)
-db.session.commit()
-"""
