@@ -33,7 +33,8 @@ def login():
         if username == adminuser.username and password == adminuser.password:
              return redirect(url_for('main'))
         else:
-            return render_template('authfail.html')
+            #`return render_template('authfail.html')
+            return render_template('index.html', failmsg="Username or Password is incorrect")
 
 @app.route('/main')
 def main():

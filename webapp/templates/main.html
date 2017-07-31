@@ -1,41 +1,106 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Main App</title>
-	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
+    <meta charset="UTF-8">
+    <title>Cisco Automaion Tool</title>
+
+    <!-- Link For Include FavIcon -->
+    <link rel="shortcut icon" type="image/png"
+          href="https://upload.wikimedia.org/wikipedia/en/thumb/2/22/Heckert_GNU_white.svg/1048px-Heckert_GNU_white.svg.png"/>
+
+    <!--Old Css Link-->
+    <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/mainpage.css') }}">-->
+
+    <!--New Css Link -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/main-page.css') }}">
 </head>
 <body>
-<div class="add">
-    <img class="cisco" src="{{url_for('static', filename='cisco.png')}}" style="width:120px;height:45px; margin-right:1420px;" />
-	<a class="add" href='/addnewdevice'>Add/Edit  Device</a>
-	<a class="add" href='/addnewcommand'>Add/Edit  Command</a>
-</div>
-<div class="list">
-	Devices
-    Commands
-</div>
-<div>
-<form action="/ciscoconnect" method='POST' accept-charset="UTF-8" >
-  {% for i in devices %}
-  <input type="checkbox" name="{{ i[1] }}" value="{{ i[0] }}">{{ i[1] }}    <b>{{ i[0] }}</b>  {{ i[2] }} <br>
-  {% endfor %}
-  <br><br><br>
+<nav>
 
-  {% for i in commands %}
-  	<input type="checkbox" name="{{ i[1] }}" value="{{ i[0] }}">{{ i[0] }} {{ i[1] }}:      {{ i[2] }} <br>
-  {% endfor %}
-  <br>
-
-  <input type="text" name="customcommand" style="width: 400px;" placeholder="enter custom command"> </br><br>
-  <input type="submit" value="Submit"><br>
-<br>
-
-</form>
-{{ msg }}
+    <div>
+        <img class="cisco"
+             src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Cisco_logo.svg/1280px-Cisco_logo.svg.png"/>
+        <ul>
+            <li><a class="add" href='/addnewdevice'>Add / Edit Device</a></li>
+            <li><a class="add" href='/addnewcommand'>Add / Edit Command</a></li>
+        </ul>
+    </div>
 
 
-</div>
+</nav>
+<section>
+    <div class="navbar-command-device clr">
+        <ul class="clr">
+            <li>Devices</li>
+            <li>Commands</li>
+        </ul>
+    </div>
+    <div class="list-command-device">
+        <form action="/ciscoconnect" method='POST' accept-charset="UTF-8">
+            <div class="clr">
+                <div class="command-list">
+                    {% for i in devices %}
+                    <div>
+                        <input type="checkbox" id="{{loop.index}}{{ i[1] }}" name="{{ i[1] }}" value="{{ i[0] }}">
+                        <label for="{{loop.index}}{{ i[1] }}">{{ i[1] }} <b>{{ i[0] }}</b> {{ i[2] }}</label>
+                    </div>
+
+                    {% endfor %}
+                </div>
+
+                <div class="device-list">
+                    {% for i in commands %}
+                    <div>
+                        <input type="checkbox" name="{{ i[1] }}" id="{{loop.index}}{{ i[1] }}" value="{{ i[0] }}">
+                        <label for="{{loop.index}}{{ i[1] }}">{{ i[0] }} {{ i[1] }}: {{ i[2] }}</label>
+                    </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+
+
+            <div class="add-command">
+                <div>
+                    <input class="input" type="text" name="customcommand" style="width: 400px;" placeholder="enter custom command">
+                    <input type="submit" value="Submit" class="btn">
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>
+<!--<div class="add">-->
+<!--<img class="cisco" src="{{url_for('static', filename='cisco.png')}}"-->
+<!--style="width:120px;height:45px; margin-right:1420px;"/>-->
+<!--<a class="add" href='/addnewdevice'>Add/Edit Device</a>-->
+<!--<a class="add" href='/addnewcommand'>Add/Edit Command</a>-->
+<!--</div>-->
+<!--<div class="list">-->
+<!--Devices-->
+<!--Commands-->
+<!--</div>-->
+<!--<div>-->
+<!--<form action="/ciscoconnect" method='POST' accept-charset="UTF-8">-->
+<!--{% for i in devices %}-->
+<!--<input type="checkbox" name="{{ i[1] }}" value="{{ i[0] }}">{{ i[1] }} <b>{{ i[0] }}</b> {{ i[2] }} <br>-->
+<!--{% endfor %}-->
+<!--<br><br><br>-->
+
+<!--{% for i in commands %}-->
+<!--<input type="checkbox" name="{{ i[1] }}" value="{{ i[0] }}">{{ i[0] }} {{ i[1] }}: {{ i[2] }} <br>-->
+<!--{% endfor %}-->
+<!--<br>-->
+
+<!--<input type="text" name="customcommand" style="width: 400px;" placeholder="enter custom command"> </br><br>-->
+<!--<input type="submit" value="Submit"><br>-->
+<!--<br>-->
+
+<!--</form>-->
+<!--{{ msg }}-->
+
+
+<!--</div>-->
 
 
 <script>

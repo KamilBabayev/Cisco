@@ -1,0 +1,132 @@
+html,body{
+    padding: 0;
+    margin: 0;
+}
+nav{
+    padding: 10px 0;
+    background-color: #222;
+}
+nav>div{
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+}
+nav>div>img{
+    width: 5%;
+}
+nav ul{
+    list-style-type: none;
+    display: inline-block;
+    float: right;
+}
+nav ul li{
+    float: left;
+    position: relative;
+    display: block;
+}
+nav li>a{
+    position: relative;
+    display: block;
+    padding: 0 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    letter-spacing: 1px;
+    color: #fff;
+}
+nav a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.clr:after {
+    clear: both;
+    content: "";
+    display: block;
+}
+
+
+.navbar-command-device{
+    width: 90%;
+    background: #222222;
+    display: block;
+    margin: auto;
+}
+
+.navbar-command-device>ul{
+    list-style-type: none;
+    padding: 15px;
+}
+
+.navbar-command-device li {
+    position: relative;
+    font-weight: bold;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+
+
+.navbar-command-device li:first-child {
+    float: left;
+    width: calc(50% - 2px);
+    border-right: 2px solid white;
+}
+.navbar-command-device li:last-child {
+    float: right;
+    width: 50%;
+    width: calc(50% - 2px);
+    margin-left: 2px;
+}
+
+
+.list-command-device{
+    width: 90%;
+    display: block;
+    margin: auto;
+}
+
+.device-list{
+    float: right;
+    display: inline-block;
+    width: 50%;
+}
+
+.command-list{
+    float: left;
+    display: inline-block;
+    width: 50%
+}
+.add-command{
+    display: block;
+}
+
+.input{
+    background-color: #ECF0F1;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 200;
+    width: 80%;
+
+}
+.btn{
+    border: 2px solid transparent;
+    background: #222222;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 5px 10px;
+    text-decoration: none;
+    text-shadow: none;
+    border-radius: 3px;
+    box-shadow: none;
+    transition: 0.25s;
+    margin-top: 10px;
+}
+label{
+    letter-spacing: 1px;
+    font-size: 1em;
+}

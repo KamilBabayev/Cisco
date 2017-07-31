@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Main App</title>
-	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
+    <meta charset="UTF-8">
+    <title>Cisco Automaion Tool</title>
+
+    <!-- Link For Include FavIcon -->
+    <link rel="shortcut icon" type="image/png"
+          href="https://upload.wikimedia.org/wikipedia/en/thumb/2/22/Heckert_GNU_white.svg/1048px-Heckert_GNU_white.svg.png"/>
+
+    <!--Old Css Link-->
+    <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/mainpage.css') }}">-->
+
+    <!--New Css Link -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/main-page.css') }}">
 </head>
 <body>
-<div class="add">
-	<img class="cisco" src="{{url_for('static', filename='cisco.png')}}" style="width:120px;height:45px; margin-right:1420px;" />
-	<a class="add" href='/addnewdevice'>Add/Edit Device</a>
-	<a class="add" href='/addnewcommand'>Add/Edit Command</a>
-</div>
-<div class="list">
-    Devices
-    Commands
-</div>
+<nav>
 
+    <div>
+        <img class="cisco"
+             src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Cisco_logo.svg/1280px-Cisco_logo.svg.png"/>
+        <ul>
+            <li><a class="add" href='/addnewdevice'>Add / Edit Device</a></li>
+            <li><a class="add" href='/addnewcommand'>Add / Edit Command</a></li>
+        </ul>
+    </div>
+
+
+</nav>
 
 
 <div>
-	{% block content %}
-    {% endblock %}   
+    {% block content %}
+    {% endblock %}
 </div>
 
-    <a  href="/main">Home Page </a>
+
 </body>
 </html>

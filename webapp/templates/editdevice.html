@@ -1,22 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>Main App</title>
-	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
-</head>
-<body>
-<div class="add">
-	<img class="cisco" src="{{url_for('static', filename='cisco.png')}}" style="width:120px;height:45px; margin-right:1420px;" />
-	<a class="add" href='/addnewdevice'>Add/Edit Device</a>
-	<a class="add" href='/addnewcommand'>Add/Edit Command</a>
-</div>
-<div class="list">
-    Devices
-    Commands
-</div>
+{% extends "base.html" %}
 
-<div>
 {% block content %}
  <h2> Edit / Delete Device </h2>
 <form action="/editdevice" method='POST' accept-charset="UTF-8" >

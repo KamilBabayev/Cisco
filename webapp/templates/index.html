@@ -1,20 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Cisco Automaion Tool</title>
-	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
+    <meta charset="UTF-8">
+    <title>Cisco Automaion Tool</title>
+
+    <!-- Link For Include FavIcon -->
+    <link rel="shortcut icon" type="image/png"
+          href="https://upload.wikimedia.org/wikipedia/en/thumb/2/22/Heckert_GNU_white.svg/1048px-Heckert_GNU_white.svg.png"/>
+
+    <!--Old Css Link-->
+    <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/mainpage.css') }}">-->
+
+    <!--New Css Link -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/login.css') }}">
+
+
 </head>
 <body class="index">
-<div class="login">
-	<form action='/login' method='post'>
-		<p class="username">Username: </br>
-    	<input class="field" type="text" name="username" required="required">
-		<p class="username">Password:<br>
-		<input class='field' type="password" name="password" required="required"><br><br>
-		<input class="submit"  value="Login" type="submit">
-	</form>
-</div>
+<section class="login-section">
+    <div class="login">
+        <div class="login-screen">
+            <div class="app-title">
+                <h1>Login</h1>
+            </div>
+            <div class="login-form">
+                <form action='/login' method='post'>
+                    <div class="control-group">
+                        <input type="text" class="login-field" value="" placeholder="Username" id="login-name" name="username">
+                        <label class="login-field-icon fui-user" for="login-name"></label>
+                    </div>
+
+                    <div class="control-group">
+                        <input type="password" class="login-field" value="" placeholder="Password" id="login-pass" name="password">
+                        <label class="login-field-icon fui-lock" for="login-pass"></label>
+                    </div>
+                    <button class="btn btn-primary btn-large btn-block" type="submit" href="#">Login</button>
+                    <p style="color:red"> {{ failmsg }} </p>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--<div class="login">-->
+<!--<form action='/login' method='post'>-->
+<!--<p class="username">Username: </br>-->
+<!--<input class="field" type="text" name="username" required="required">-->
+<!--<p class="username">Password:<br>-->
+<!--<input class='field' type="password" name="password" required="required"><br><br>-->
+<!--<input class="submit"  value="Login" type="submit">-->
+<!--</form>-->
+
+
+<!--</div>-->
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 .add {
 	background-color: black;
-	color: white; 
+	color: white;
     #text-align: right;
 	padding-bottom: 10px;
 	padding-top: 10px;
@@ -25,8 +25,8 @@ div.devices {
 
 .index {
 	background-color: black;
-#   	margin-top: 25em;
-#   	margin-left: 50em;
+   	margin-top: 25em;
+   	margin-left: 50em;
 }
 
 .cisco {
@@ -44,7 +44,7 @@ div.devices {
 .username {
 	color: white;
 	font-size: 20px;
-    font-family: "Times New Roman", Times, serif;	
+    font-family: "Times New Roman", Times, serif;
 }
 .field {
 	padding: 8px 25px 8px 4px;
