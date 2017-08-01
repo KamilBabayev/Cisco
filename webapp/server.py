@@ -1,25 +1,47 @@
 #!/usr/bin/env python3
 from subprocess import PIPE, Popen
-from flask import Flask
-from flask import request, render_template, redirect, url_for
-#import re
-import paramiko
-#from flask_sqlalchemy import SQLAlchemy
+from flask  import Flask
+from flask  import request,render_template, redirect, url_for, session
 from models import db, User, Command, Device
+from forms  import LoginForm
+import paramiko
+#import re
+#from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.secret_key = 'development'
 db.init_app(app)
 #db = SQLAlchemy(app)
 
+@app.route('/demo', methods=['GET', 'POST'])
+def demo():
+    form = LoginForm(request.form) 
+    if request.method == 'POST':
+        adminuser = User.query.filter_by(username='admin').first()
+        #username = request.form['username']
+        #password = request.form['password']
+        username = form.username.data
+        password = form.password.data
+        print(username, password, "daaaaa")
+        failmsg = "Username or Password is not correct"
+        #print(form.validate(), request.form['username'], request.form['password'])
+        if form.validate() == False:
+            return render_template('demo.html', form = form)
+        else:  
+            if username == adminuser.username and password == adminuser.password:
+                session['username'] = form.username.data
+                return redirect(url_for('main'))
+            else:
+                #return "username pasword is incorrect"
+                return render_template('demo.html', form = form, failmsg=failmsg)
+    elif request.method == 'GET':
+        return render_template('demo.html', form = form)
+        
 
 @app.route('/')
 def index():
 	return render_template("index.html")
-
-@app.route('/new')
-def new():
-	return render_template('new.html')
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -36,11 +58,20 @@ def login():
             #`return render_template('authfail.html')
             return render_template('index.html', failmsg="Username or Password is incorrect")
 
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('demo'))
+
 @app.route('/main')
 def main():
+    if 'username' not in session:
+        return redirect(url_for('demo'))
+
     def chunks(l, n):
         for i in range(0, len(l), n):
             yield l[i:i+n]
+
     desc=[]
     name=[]
     command = []
@@ -74,6 +105,9 @@ def main():
 
 @app.route('/editdevice', methods=['GET', 'POST'])
 def editdevice():
+    if 'username' not in session:
+        return redirect(url_for('demo'))
+
     data = request.get_data()
     data = str(data)
     print(data)
@@ -103,10 +137,16 @@ def editdevice():
 
 @app.route('/editcommand', methods=['GET', 'POST'])
 def editcommand():
+    if 'username' not in session:
+        return redirect(url_for('demo'))
+
     return render_template('editcommand.html', commands=commands)
 
 @app.route('/addnewdevice', methods=['GET', 'POST'])
 def addnewdevice():
+    if 'username' not in session:
+        return redirect(url_for('demo'))
+
     data = request.get_data()
     data = str(data)
     data = data.strip('b').split('&')
@@ -128,6 +168,9 @@ def addnewdevice():
 
 @app.route('/addnewcommand', methods=['GET', 'POST'])
 def addnewcommand():
+    if 'username' not in session:
+        return redirect(url_for('demo'))
+
     data = request.get_data()
     data = str(data)
     data = data.strip('b').split('&')
@@ -150,6 +193,9 @@ def addnewcommand():
 
 @app.route('/ciscoconnect', methods=['GET', 'POST'])
 def ciscoconnect1():
+    if 'username' not in session:
+        return redirect(url_for('demo'))
+
     data = request.get_data()
     print(data)
     data = str(data)

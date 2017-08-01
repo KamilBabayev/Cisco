@@ -26,13 +26,24 @@
             <div class="login-form">
                 <form action='/demo' method='post'>
                     <div class="control-group">
+						<div>{{ form.hidden_tag() }} </div>
                         <input type="text" class="login-field" value="" placeholder="Username" id="login-name" name="username">
                         <label class="login-field-icon fui-user" for="login-name"></label>
+                        {% if form.username.errors %}
+                            {% for error in form.username.errors %}
+                                <p style="color:red">{{ error }}<p>
+                            {% endfor %}
+                        {% endif %}
                     </div>
 
                     <div class="control-group">
                         <input type="password" class="login-field" value="" placeholder="Password" id="login-pass" name="password">
-                        <label class="login-field-icon fui-lock" for="login-pass"></label>
+                        <label class="login-field-icon fui-lock" for="login-pass"></label><br>
+                        {% if form.username.errors %}
+                            {% for error in form.username.errors %}
+                                <p style="color:red">{{ error }}<p>
+                            {% endfor %}
+                        {% endif %}
                     </div>
                     <button class="btn btn-primary btn-large btn-block" type="submit" href="#">Login</button>
                     <p style="color:red"> {{ failmsg }} </p>
