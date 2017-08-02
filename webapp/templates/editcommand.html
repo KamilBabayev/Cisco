@@ -1,17 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
- <h2> Edit / Delete Command </h2>
-<form action="/editcommand" method='POST' accept-charset="UTF-8" >
+<h2 class="space"> Edit / Delete Command </h2>
+<div class="border2">
+<form class="space"  action="/editcommand" method='POST' accept-charset="UTF-8" >
   
   {% for i in commands %}
         <input type="checkbox" name="{{ i[1] }}" value="{{ i[0] }}">{{ i[0] }} {{ i[1] }}:      {{ i[2] }} <br>
-  {% endfor %}
+  {% endfor %}<br>
 
-  <input type="submit" value="Edit">
-  <input type="submit" value="Delete"><br>
+  <input class="submit3" type="submit" value="Edit">
+  <input class="submit3" type="submit" value="Delete"><br>
 <br>
 
 </form>
+</div>
 {{ msg }}
 
 {% endblock %}   
