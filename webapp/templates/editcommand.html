@@ -8,13 +8,13 @@
         <input type="checkbox" name="{{ i[1] }}" value="{{ i[0] }}">{{ i[0] }} {{ i[1] }}:      {{ i[2] }} <br>
   {% endfor %}<br>
 
-  <input class="submit3" type="submit" value="Edit">
-  <input class="submit3" type="submit" value="Delete"><br>
+  <input class="submit3" type="submit" name="edit" value="Edit">
+  <input class="submit3" type="submit" name="delete" value="Delete"><br>
 <br>
 
 </form>
 </div>
-{{ msg }}
+{{ success_msg }}
 
 {% endblock %}   
 </div>

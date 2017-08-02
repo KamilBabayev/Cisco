@@ -166,6 +166,20 @@ def updatedevice():
 def editcommand():
     if 'username' not in session:
         return redirect(url_for('login'))
+    data = request.get_data()
+    data = str(data)
+    print(data)
+    if request.method == 'POST':
+        data = data.strip('b').strip("'").split("=")[1]
+        data = data.split('&')
+        command, button = data[0].rstrip('+').replace('+',' '), data[1]
+        global command
+        print(command, button)
+        if button == "delete":
+            command = Command.query.filter_by(command=command).first()
+            db.session.delete(command)
+            db.session.commit()
+            return render_template('editcommand.html', success_msg="Command deleted successfully")
 
     return render_template('editcommand.html', commands=commands)
 
