@@ -1,63 +1,40 @@
-.add {
-	background-color: black;
-	color: white;
-    #text-align: right;
-	padding-bottom: 10px;
-	padding-top: 10px;
-	padding-left: 10px;
-	margin; 0;
-	font-size: 20px;
-}
-add2 {
-	color: white;
-    text-align: right;
-}
-.list {
-	color: blue;
-	text-align: left;
-	word-spacing: 45em;
-	background-color: #696969;
-	padding: 10px;
-}
-div.devices {
-	background-color: green;
-}
-
-.index {
-	background-color: black;
-   	margin-top: 25em;
-   	margin-left: 50em;
-}
-
-.cisco {
-	#padding-top: 10px;
-}
-
-.login {
-	border: 1px solid grey;
-	padding-left: 195px;
-	padding-right: 100px;
-	padding-bottom: 60px;
-	padding-top: 40px;
-	margin: 17em 40em 2em 40em;
-}
-.username {
-	color: white;
-	font-size: 20px;
-    font-family: "Times New Roman", Times, serif;
-}
-.field {
-	padding: 8px 25px 8px 4px;
-}
-.newdevice {
-    padding: 8px 20px 8px 50px;
-}
-
 .submit {
 	padding: 8px 84px 8px 84px;
 	#background-color: #99ff33;
 	background-color: #99cc00;
 	color: white;
 	text-align: center;
+}
+
+.submit2 {
+    #padding: 8px 84px 8px 84px;
+	padding: 2.5% 24% 2.5% 23%;
+    #background-color: #99ff33;
+    background-color: #99cc00;
+    color: white;
+    text-align: center;
+}
+
+.space {
+	margin-left: 2%;
+}
+
+.border {
+	border: 1px solid black;
+    margin-right:80%;
+    margin-left:1%;
+    padding-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-bottom: 2%;
+}
+
+.field {
+	width: 72%;
+    height: 25px;
+}
+.desc {
+    width: 72%;
+    height: 50px;
 }
 

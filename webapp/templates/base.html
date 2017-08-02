@@ -9,7 +9,7 @@
           href="https://upload.wikimedia.org/wikipedia/en/thumb/2/22/Heckert_GNU_white.svg/1048px-Heckert_GNU_white.svg.png"/>
 
     <!--Old Css Link-->
-    <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/mainpage.css') }}">-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/mainpage.css') }}">
 
     <!--New Css Link -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/main-page.css') }}">
@@ -21,8 +21,10 @@
         <img class="cisco"
              src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Cisco_logo.svg/1280px-Cisco_logo.svg.png"/>
         <ul>
+            <li><a class="add" href='/main'>Home</a></li>
             <li><a class="add" href='/addnewdevice'>Add / Edit Device</a></li>
             <li><a class="add" href='/addnewcommand'>Add / Edit Command</a></li>
+            <li><a class="add" href='/logout'>Logout</a></li>
         </ul>
     </div>
 

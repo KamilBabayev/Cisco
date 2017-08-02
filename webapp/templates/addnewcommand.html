@@ -1,17 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2> Add New Command </h2>
-<div>
-        <form action="/addnewcommand" method='POST' accept-charset="UTF-8">
+<h2 class="space"> Add New Command </h2>
+<div class="border">
+        <form class="space" action="/addnewcommand" method='POST' accept-charset="UTF-8">
                 <p><b>Command:</b> </br>
         		<input class="field" type="text" name="command" required="required">
                 <p><b>Name:</b><br>
                 <input class='field' type="text" name="name" required="required"><br>
                 <p><b>Description:</b><br> 
                 <input class='field' type="textbox" name="description"><br><br>
-                <input class="submit"  value="Add Command" type="submit">
+                <input class="submit2"  value="Add Command" type="submit">
         </form>
+  		<form class="space" action="/editcommand" method="POST">
+    		<input class="submit2" type="submit" value="Edit Command"><br>
+  		</form>
 </div>
 
 <div>
@@ -21,11 +24,10 @@
    {{ fail_msg }}
 </div>
 
+<!--
 <div>
-  <form action="/editcommand" method="POST">
-    <input class="submit" type="submit" value="Edit Command"><br>
-  </form>
 </div>
+-->
 
 
 {% endblock %}

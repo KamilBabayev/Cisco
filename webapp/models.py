@@ -36,5 +36,13 @@ class Device(db.Model):
         self.name = name
         self.desc = desc
 
+class ConnUser(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(30), unique=True)
+    password = db.Column(db.String(30))
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
 
 #db.create_all()

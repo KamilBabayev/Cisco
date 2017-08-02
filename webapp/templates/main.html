@@ -21,6 +21,7 @@
         <img class="cisco"
              src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Cisco_logo.svg/1280px-Cisco_logo.svg.png"/>
         <ul>
+            <li><a class="add" href='/main'>Home</a></li>
             <li><a class="add" href='/addnewdevice'>Add / Edit Device</a></li>
             <li><a class="add" href='/addnewcommand'>Add / Edit Command</a></li>
             <li><a class="add" href='/logout'>Logout</a></li>
@@ -53,7 +54,7 @@
                     {% for i in commands %}
                     <div>
                         <input type="checkbox" name="{{ i[1] }}" id="{{loop.index}}{{ i[1] }}" value="{{ i[0] }}">
-                        <label for="{{loop.index}}{{ i[1] }}">{{ i[0] }} {{ i[1] }}: {{ i[2] }}</label>
+                        <label for="{{loop.index}}{{ i[1] }}">{{ i[1] }} {{ i[0] }}: {{ i[2] }}</label>
                     </div>
 
                     {% endfor %}

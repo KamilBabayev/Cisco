@@ -1,17 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2> Add New Device </h2>
-<div>
-        <form action="/addnewdevice" method='POST' accept-charset="UTF-8">
+<h2 class="space"> {{ header }}  </h2>
+<div class="border">
+        <form class="space"  method='POST' accept-charset="UTF-8">
                 <p><b>Ip Adress:</b> </br>
-        		<input class="field" type="text" name="ipaddress" required="required">
+        		<input class="field" type="text" name="ipaddress" required="required" value="{{ name }}">
                 <p><b>Name:</b><br>
-                <input class='field' type="text" name="name" required="required"><br>
+                <input class='field' type="text" name="name" required="required"  value="{{ ip }}"><br>
                 <p><b>Description:</b><br> 
-                <input class='field' type="textbox" name="description"><br><br>
-                <input class="submit"  value="Add Device" type="submit">
+                <input class='field' type="textbox" name="description"  value="{{ desc }}"><br><br>
+                <input class="submit"  value="{{ submitvalue }}" type="submit">
         </form>
+  <form class="space"  action="/editdevice" method="GET">
+    <input class="submit" type="submit" value="Edit Device"><br>
+  </form>
+
 </div>
 <div>
    {{ success_msg }}
@@ -20,11 +24,13 @@
    {{ fail_msg }}
 </div>
 
+<!--
 <div>
-  <form action="/editdevice" method="GET">
+  <form class="space"  action="/editdevice" method="GET">
     <input class="submit" type="submit" value="Edit Device"><br>
   </form>
 </div>
+-->
 
 
 

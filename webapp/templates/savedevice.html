@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+ <h2> Edit / Delete Device </h2>
+<form action="/editdevice" method='POST' accept-charset="UTF-8" >
+  {% for i in devices %}
+  <input type="checkbox" name="{{ i[1] }}" value="{{ i[0] }}">{{ i[1] }}    {{ i[0] }}  {{ i[2] }} <br>
+  {% endfor %}
+  <input type="submit" name="edit" value="Edit">
+  <input type="submit" name="delete" value="Delete"><br>
+<br>
+
+</form>
+<div style="color:red">
+{{ success_msg }} 
+</div>
+{{ msg }}
+
+{% endblock %}   
+</div>
+
+    <a  href="/addnewdevice">Back </a><br>
+    <a  href="/main">Home Page </a>
+</body>
+</html>

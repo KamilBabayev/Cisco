@@ -10,12 +10,13 @@ import paramiko
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'development'
 db.init_app(app)
 #db = SQLAlchemy(app)
 
-@app.route('/demo', methods=['GET', 'POST'])
-def demo():
+@app.route('/login', methods=['GET', 'POST'])
+def login():
     form = LoginForm(request.form) 
     if request.method == 'POST':
         adminuser = User.query.filter_by(username='admin').first()
@@ -23,28 +24,27 @@ def demo():
         #password = request.form['password']
         username = form.username.data
         password = form.password.data
-        print(username, password, "daaaaa")
         failmsg = "Username or Password is not correct"
-        #print(form.validate(), request.form['username'], request.form['password'])
+        print(form.validate(), request.form['username'], request.form['password'])
         if form.validate() == False:
-            return render_template('demo.html', form = form)
+            return render_template('index.html', form = form)
         else:  
             if username == adminuser.username and password == adminuser.password:
                 session['username'] = form.username.data
                 return redirect(url_for('main'))
             else:
                 #return "username pasword is incorrect"
-                return render_template('demo.html', form = form, failmsg=failmsg)
+                return render_template('index.html', form = form, failmsg=failmsg)
     elif request.method == 'GET':
-        return render_template('demo.html', form = form)
+        return render_template('index.html', form = form)
         
 
 @app.route('/')
 def index():
-	return render_template("index.html")
+	return redirect(url_for("login"))
 
-@app.route('/login', methods=['POST', 'GET'])
-def login():
+@app.route('/login2', methods=['POST', 'GET'])
+def login2():
     if request.method == 'GET':
        return redirect('/')
     if request.method == 'POST':
@@ -61,12 +61,12 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('username', None)
-    return redirect(url_for('demo'))
+    return redirect(url_for('login'))
 
 @app.route('/main')
 def main():
     if 'username' not in session:
-        return redirect(url_for('demo'))
+        return redirect(url_for('login'))
 
     def chunks(l, n):
         for i in range(0, len(l), n):
@@ -106,7 +106,7 @@ def main():
 @app.route('/editdevice', methods=['GET', 'POST'])
 def editdevice():
     if 'username' not in session:
-        return redirect(url_for('demo'))
+        return redirect(url_for('login'))
 
     data = request.get_data()
     data = str(data)
@@ -115,6 +115,7 @@ def editdevice():
         data = data.strip('b').strip("'").split("=")[1]
         data = data.split('&')
         #data = data.split('&')[0]
+        global ipaddr
         ipaddr, button = data[0], data[1]
         print(ipaddr, button)
         """
@@ -128,24 +129,50 @@ def editdevice():
             db.session.commit()
             return render_template('editdevice.html', success_msg="Deviced deleted successfully")
         elif button == "edit":
-            print('EDIT')
-            return render_template('editdevice.html', success_msg="Deviced EDITED successfully")
+            device = Device.query.filter_by(ip=ipaddr).first()
+            #db.session.delete(devip)
+            #db.session.commit()
+            print('EDIT', device.ip)
+            return render_template('updatedevice.html', header="Update New Device", 
+                                    submitvalue="Update Device", ip=device.ip, name = device.name, desc = device.desc)
+            #return render_template('addnewdevice.html')
         #return render_template('editdevice.html', success_msg="Deviced deleted successfully")
     #data = data.strip('b').strip("'").split('=')[1]
     #print(data)
     return render_template('editdevice.html', devices=devices)
 
+@app.route('/updatedevice', methods=['GET', 'POST'])
+def updatedevice():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    data = request.get_data()
+    data = str(data)
+    data = data.strip('b').split('&')
+    x,y = [],[]
+    if request.method == 'POST':
+        for i in data:
+            #print(i.split('=')[1].rstrip("'").replace("+", " "))
+            x.append(i.split('=')[1].rstrip("'").replace("+", " "))
+        ip, name, desc = x[0],x[1], x[2]
+        print(ip, name, desc, "UPDATEEEEEEEEEEE")
+        curdata = Device.query.filter_by(ip=ipaddr).first()
+        curdata.ip = ip
+        curdata.name = name
+        curdata.desc = desc
+        db.session.commit()
+    return redirect(url_for('main'))
+
 @app.route('/editcommand', methods=['GET', 'POST'])
 def editcommand():
     if 'username' not in session:
-        return redirect(url_for('demo'))
+        return redirect(url_for('login'))
 
     return render_template('editcommand.html', commands=commands)
 
 @app.route('/addnewdevice', methods=['GET', 'POST'])
 def addnewdevice():
     if 'username' not in session:
-        return redirect(url_for('demo'))
+        return redirect(url_for('login'))
 
     data = request.get_data()
     data = str(data)
@@ -164,12 +191,12 @@ def addnewdevice():
             return render_template('addnewdevice.html', success_msg="Device added successfully")
         except:
             return render_template('addnewdevice.html', fail_msg="Error occured. Can not add device")
-    return render_template('addnewdevice.html')
+    return render_template('addnewdevice.html', header="Add New Device", submitvalue="Add Device")
 
 @app.route('/addnewcommand', methods=['GET', 'POST'])
 def addnewcommand():
     if 'username' not in session:
-        return redirect(url_for('demo'))
+        return redirect(url_for('login'))
 
     data = request.get_data()
     data = str(data)
@@ -191,10 +218,12 @@ def addnewcommand():
             return render_template('addnewcommand.html', fail_msg="Error occured.Can not add new command")
     return render_template('addnewcommand.html')
 
+
+
 @app.route('/ciscoconnect', methods=['GET', 'POST'])
 def ciscoconnect1():
     if 'username' not in session:
-        return redirect(url_for('demo'))
+        return redirect(url_for('login'))
 
     data = request.get_data()
     print(data)

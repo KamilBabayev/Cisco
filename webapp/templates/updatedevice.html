@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2> {{ header }}  </h2>
+<div>
+        <form action="/updatedevice" method='POST' accept-charset="UTF-8">
+                <p><b>Ip Adress:</b> </br>
+        		<input class="field" type="text" name="ipaddress" required="required" value="{{ ip }}">
+                <p><b>Name:</b><br>
+                <input class='field' type="text" name="name" required="required"  value="{{ name }}"><br>
+                <p><b>Description:</b><br> 
+                <input class='field' type="textbox" name="description"  value="{{ desc }}"><br><br>
+                <input class="submit"  value="{{ submitvalue }}" type="submit">
+        </form>
+</div>
+<div>
+   {{ success_msg }}
+</div>
+<div>
+   {{ fail_msg }}
+</div>
+
+
+
+
+{% endblock %}

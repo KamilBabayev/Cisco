@@ -2,6 +2,7 @@ from models import db
 from models import User
 from models import Command
 from models import Device
+from models import ConnUser
 
 db.create_all()
 admin = User('admin', 'admin123')
@@ -17,11 +18,14 @@ showprocmem = Command('show  processes memory', 'SHOW MEM PROCESSES', 'This comm
 testcoresw01 = Device('10.50.5.57', 'testswitch01', 'Test Core Switch01')
 testcoresw02 = Device('10.50.5.58', 'testswitch02', 'Test Core Switch02')
 
+connuser = ConnUser('cisco', 'cisco')
+
 db.session.add(showversion)
 db.session.add(showintstatus)
 db.session.add(showipintbrf)
 db.session.add(showmactable)
 db.session.add(showprocmem)
+db.session.add(connuser)
 db.session.commit()
 
 db.session.add(testcoresw01)
