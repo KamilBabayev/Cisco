@@ -269,6 +269,9 @@ def addnewcommand():
             return render_template('addnewcommand.html', fail_msg="Error occured.Can not add new command")
     return render_template('addnewcommand.html')
 
+@app.route('/enablemode')
+def enablemode():
+    return render_template("enablemode.html")
 
 
 @app.route('/ciscoconnect', methods=['GET', 'POST'])

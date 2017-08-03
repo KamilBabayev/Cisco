@@ -30,7 +30,8 @@ nav li>a{
     padding: 0 15px;
     font-weight: bold;
     text-transform: uppercase;
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    #font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    #font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     letter-spacing: 1px;
     color: #fff;
 }
