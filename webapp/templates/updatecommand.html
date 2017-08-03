@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="space"> {{ header }}  </h2>
+<div class="border">
+        <form class="space" action="/updatecommand" method='POST' accept-charset="UTF-8">
+                <p><b>Command:</b> </br>
+        		<input class="field" type="text" name="command" required="required" value="{{ command }}">
+                <p><b>Name:</b><br>
+                <input class='field' type="text" name="name" required="required"  value="{{ name }}"><br>
+                <p><b>Description:</b><br> 
+                <input class='field' type="textbox" name="description"  value="{{ desc }}"><br><br>
+                <input class="submit2"  value="{{ submitvalue }}" type="submit">
+        </form>
+</div>
+<div>
+   {{ success_msg }}
+</div>
+<div>
+   {{ fail_msg }}
+</div>
+
+
+
+
+{% endblock %}

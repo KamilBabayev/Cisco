@@ -33,8 +33,8 @@
 <section>
     <div class="navbar-command-device clr">
         <ul class="clr">
-            <li>Devices</li>
-            <li>Commands</li>
+            <li>to these devices</li>
+            <li>choose command to apply</li>
         </ul>
     </div>
     <div class="list-command-device">
@@ -44,7 +44,7 @@
                     {% for i in devices %}
                     <div>
                         <input type="checkbox" id="{{loop.index}}{{ i[1] }}" name="{{ i[1] }}" value="{{ i[0] }}">
-                        <label for="{{loop.index}}{{ i[1] }}">{{ i[1] }} <b>{{ i[0] }}</b> {{ i[2] }}</label>
+                        <label for="{{loop.index}}{{ i[1] }}"><b>{{ i[0] }}</b>&nbsp;&nbsp;{{ i[1] }}&nbsp; - &nbsp; {{ i[2] }}</label>
                     </div>
 
                     {% endfor %}
@@ -54,17 +54,17 @@
                     {% for i in commands %}
                     <div>
                         <input type="checkbox" name="{{ i[1] }}" id="{{loop.index}}{{ i[1] }}" value="{{ i[0] }}">
-                        <label for="{{loop.index}}{{ i[1] }}">{{ i[1] }} {{ i[0] }}: {{ i[2] }}</label>
+                        <label for="{{loop.index}}{{ i[1] }}"><b>{{ i[0] }}</b>&nbsp; {{ i[1] }} - &nbsp; {{ i[2] }}</label>
                     </div>
 
                     {% endfor %}
-                </div>
+               </div>
             </div>
 
-
+            <br><br>
             <div class="add-command">
                 <div>
-                    <input class="input" type="text" name="customcommand" style="width: 400px;" placeholder="enter custom command">
+                    <input class="input" type="text" name="customcommand" style="width: 400px;" placeholder="or enter custom command">
                     <input type="submit" value="Submit" class="btn">
                 </div>
             </div>

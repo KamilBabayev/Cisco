@@ -15,6 +15,10 @@ app.secret_key = 'development'
 db.init_app(app)
 #db = SQLAlchemy(app)
 
+@app.errorhandler(500)
+def myerr(error):
+    return render_template('main.html'), 404
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm(request.form) 
@@ -134,7 +138,9 @@ def editdevice():
             #db.session.commit()
             print('EDIT', device.ip)
             return render_template('updatedevice.html', header="Update New Device", 
-                                    submitvalue="Update Device", ip=device.ip, name = device.name, desc = device.desc)
+                                    submitvalue="Update Device", ip=device.ip, 
+                                    name = device.name, desc = device.desc)
+           
             #return render_template('addnewdevice.html')
         #return render_template('editdevice.html', success_msg="Deviced deleted successfully")
     #data = data.strip('b').strip("'").split('=')[1]
@@ -148,6 +154,7 @@ def updatedevice():
     data = request.get_data()
     data = str(data)
     data = data.strip('b').split('&')
+    print(data, '---------------------')
     x,y = [],[]
     if request.method == 'POST':
         for i in data:
@@ -172,16 +179,46 @@ def editcommand():
     if request.method == 'POST':
         data = data.strip('b').strip("'").split("=")[1]
         data = data.split('&')
-        command, button = data[0].rstrip('+').replace('+',' '), data[1]
-        global command
-        print(command, button)
+        global oldcommand
+        oldcommand, button = data[0].rstrip('+').replace('+',' '), data[1]
+        print(oldcommand, button)
         if button == "delete":
-            command = Command.query.filter_by(command=command).first()
+            command = Command.query.filter_by(command=oldcommand).first()
             db.session.delete(command)
             db.session.commit()
             return render_template('editcommand.html', success_msg="Command deleted successfully")
-
+        elif button == "edit":
+            command = Command.query.filter_by(command=oldcommand).first()
+            print(command.command)
+            return render_template('updatecommand.html', header="Update New Command",
+                                   submitvalue="Update Device", command=command.command, 
+                                   name = command.name, desc = command.desc)
+            
     return render_template('editcommand.html', commands=commands)
+
+
+@app.route('/updatecommand', methods=['GET', 'POST'])
+def updatecommand():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    data = request.get_data()
+    data = str(data)
+    print(data, '---------------------')
+    data = data.strip('b').split('&')
+    x,y = [],[]
+    if request.method == 'POST':
+        for i in data:
+            #print(i.split('=')[1].rstrip("'").replace("+", " "))
+            x.append(i.split('=')[1].rstrip("'").replace("+", " "))
+        command, name, desc = x[0],x[1], x[2]
+        print(oldcommand, name, desc, "UPDATEEEEEEEEEEE")
+        curdata = Command.query.filter_by(command=oldcommand).first()
+        curdata.command = command
+        curdata.name = name
+        curdata.desc = desc
+        db.session.commit()
+    return redirect(url_for('main'))
+
 
 @app.route('/addnewdevice', methods=['GET', 'POST'])
 def addnewdevice():
