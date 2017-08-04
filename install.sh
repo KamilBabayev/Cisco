@@ -1,5 +1,20 @@
 #!/bin/bash
+echo ''
 
+for i in {1..60} ; do  printf '%s' '.' ; sleep .01 ; done
+echo ''
+echo ''
+echo ''
+
+
+echo '-----------------------------------------------------------------------'
+echo ''
+echo "Cisco Automation Tool installation"
+echo "First assign credentials for web interface and remote cisco connections"
+echo ''
+echo '-----------------------------------------------------------------------'
+
+echo ''
 read -p "Enter web mgmt username: " mgmtuser
 
 
@@ -18,7 +33,6 @@ do
         continue
         fi
 done
-
 
 echo ''
 echo "Enter credentials that will be used to connect to CISCO devices"
@@ -100,6 +114,13 @@ ln -s /etc/uwsgi/apps-available/cisco.ini /etc/uwsgi/apps-enabled/cisco.ini
 
 /etc/init.d/nginx   restart ; /etc/init.d/uwsgi  restart
 
-
+echo ''
 echo "*** Installation completed successfully ***"
+
+
+echo ''
+b=$(/sbin/ifconfig | grep -i "inet addr:" | grep -v 127.0.0.1 | awk {'print $2'} | cut -d ':' -f2)
+echo ''
+echo "You can connnect now:  http://"$b":80/"
+echo ''
 
