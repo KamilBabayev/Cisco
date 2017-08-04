@@ -13,6 +13,7 @@ echo " ------  Installing git "
 apt-get install  git   -y
 
 echo " ------  Cloning git project repo"
+mkdir /var/www
 cd / ; git clone https://github.com/KamilBabayev/Cisco.git /var/www/html
 
 mkdir /db ;  mv /var/www/html/webapp/users.db /db  ; chown -R www-data:www-data /db/
@@ -46,11 +47,11 @@ apt-get install uwsgi -y
 echo " ------  Installing nginx uwsgi"
 apt-get install uwsgi-plugin-python3
 
-rm -rf /etc/nginx/sites-available/default ; /etc/nginx/sites-enabled/default
+rm -rf /etc/nginx/sites-available/default ;rm -rf  /etc/nginx/sites-enabled/default
 
-wget https://raw.githubusercontent.com/KamilBabayev/Cisco/master/nginx_cisco.conf -O  /etc/nginx/sites-available/cisco_nginx.conf
+wget https://raw.githubusercontent.com/KamilBabayev/Cisco/master/nginx_cisco.conf -O  /etc/nginx/sites-available/default
 
-ln -s /etc/nginx/sites-available/cisco_nginx.conf  /etc/nginx/sites-enabled/
+ln -s /etc/nginx/sites-available/default  /etc/nginx/sites-enabled/
 
 wget https://raw.githubusercontent.com/KamilBabayev/Cisco/master/cisco.ini -O /etc/uwsgi/apps-available/cisco.ini
 
@@ -60,6 +61,4 @@ ln -s /etc/uwsgi/apps-available/cisco.ini /etc/uwsgi/apps-enabled/cisco.ini
 
 
 echo "*** Installation completed successfully ***"
-
-
 
