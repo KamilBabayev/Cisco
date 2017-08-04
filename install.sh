@@ -44,6 +44,7 @@ pip3 install flask_wtf
 
 echo " ------  Installing Nginx Uwsgi"
 apt-get install nginx -y
+sleep(3)
 apt-get install uwsgi -y
 
 
@@ -60,6 +61,7 @@ ln -s /etc/uwsgi/apps-available/cisco.ini /etc/uwsgi/apps-enabled/cisco.ini
 /etc/init.d/nginx   restart ; /etc/init.d/uwsgi  restart
 
 
+echo "*** Installation completed successfully ***"
 
 
 
