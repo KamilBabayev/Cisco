@@ -3,10 +3,8 @@ import paramiko
 from sys import argv
 import re
 import sqlite3
-dbfile = '../webapp/users.db'
 
-#conn = sqlite3.connect("/Cisco/webapp/users.db")
-conn = sqlite3.connect(dbfile)
+conn = sqlite3.connect("/db/users.db")
 cred = conn.execute("select username,password from conn_user").fetchall()[0]
 username, password = cred[0], cred[1]
 host, command = argv[1], argv[2]
