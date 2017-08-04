@@ -54,6 +54,10 @@ do
     fi
 done
 
+echo ''
+echo "Be patient, installation begins..."
+sleep 2
+
 
 echo " ------  Update package index"
 apt-get update -y
