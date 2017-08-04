@@ -279,6 +279,7 @@ def ciscoconnect1():
     if 'username' not in session:
         return redirect(url_for('login'))
 
+    script_file = '../netapp/connector.py'
     data = request.get_data()
     print(data)
     data = str(data)
@@ -306,7 +307,8 @@ def ciscoconnect1():
     command = command.replace("%7C","|").replace("%2F", "/")
     print(devices, "------")
     print(command, "------")
-    p = Popen(['/Cisco/netapp/connector.py', devices, command], stdout=PIPE )
+    #p = Popen(['/Cisco/netapp/connector.py', devices, command], stdout=PIPE )
+    p = Popen([script_file, devices, command], stdout=PIPE )
     out, err = p.communicate()
     out = str(out)
     out = out.lstrip('b').strip()
