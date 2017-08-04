@@ -121,7 +121,7 @@ ln -s /etc/uwsgi/apps-available/cisco.ini /etc/uwsgi/apps-enabled/cisco.ini
 echo " ------ Installing Sqllite3"
 apt-get install sqlite3 -y
 sqlite3 /db/users.db "insert into user values(1, '$mgmtuser', '$mgmtpass2');"
-sqlite3 /db/users.db "insert into user values(1, '$ciscouser', '$ciscopass2');"
+sqlite3 /db/users.db "insert into conn_user values(1, '$ciscouser', '$ciscopass2');"
 
 echo ''
 echo "*** Installation completed successfully ***"
