@@ -27,7 +27,7 @@ class Command(db.Model):
 
 class Device(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    ip = db.Column(db.String(20), unique=False)
+    ip = db.Column(db.String(20), unique=True)
     name = db.Column(db.String(200), unique=True)
     desc = db.Column(db.String(300), unique=True)
 
