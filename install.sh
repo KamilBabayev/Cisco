@@ -15,6 +15,8 @@ apt-get install  git   -y
 echo " ------  Cloning git project repo"
 cd / ; git clone https://github.com/KamilBabayev/Cisco.git /var/www/html
 
+mkdir /db ;  mv /var/www/html/webapp/users.db /db  ; chown -R www-data:www-data /db/
+
 echo " -----    Creating soft app.py  link"
 ln -s /var/www/html/webapp/server.py  /var/www/html/webapp/app.py
 
@@ -33,9 +35,6 @@ pip3 install netmiko
 
 echo " ------  Installing flask"
 pip3 install flask
-
-
-
 
 echo " ------  Installing flask alchemy orm etxension"
 pip3 install flask_sqlalchemy
