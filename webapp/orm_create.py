@@ -5,6 +5,9 @@ from models import Device
 from models import ConnUser
 
 db.create_all()
+db.session.commit()
+
+'''
 admin = User('admin', 'admin123')
 db.session.add(admin)
 db.session.commit()
@@ -31,5 +34,4 @@ db.session.commit()
 db.session.add(testcoresw01)
 db.session.add(testcoresw02)
 db.session.commit()
-
-
+'''
