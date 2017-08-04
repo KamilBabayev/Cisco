@@ -12,6 +12,13 @@ apt-get install python3-openssl -y
 echo " ------  Installing git "
 apt-get install  git   -y
 
+echo " ------  Cloning git project repo"
+cd / ; git clone https://github.com/KamilBabayev/Cisco.git /var/www/html
+
+echo " -----    Creating soft app.py  link"
+ln -s /var/www/html/webapp/server.py  /var/www/html/webapp/app.py
+
+
 echo " ------  Installing nginx uwsgi"
 apt-get install uwsgi-plugin-python3
 
@@ -27,8 +34,6 @@ pip3 install netmiko
 echo " ------  Installing flask"
 pip3 install flask
 
-echo " ------  Cloning git project repo"
-cd / ; git clone https://github.com/KamilBabayev/Cisco.git /var/www/html
 
 
 
@@ -48,9 +53,14 @@ wget https://raw.githubusercontent.com/KamilBabayev/Cisco/master/nginx_cisco.con
 
 ln -s /etc/nginx/sites-available/cisco_nginx.conf  /etc/nginx/sites-enabled/
 
-
 wget https://raw.githubusercontent.com/KamilBabayev/Cisco/master/cisco.ini -O /etc/uwsgi/apps-available/cisco.ini
 
 ln -s /etc/uwsgi/apps-available/cisco.ini /etc/uwsgi/apps-enabled/cisco.ini
 
 /etc/init.d/nginx   restart ; /etc/init.d/uwsgi  restart
+
+
+ln -s /var/www/html/webapp/server.py /var/www/html/webapp/app.py
+
+
+
