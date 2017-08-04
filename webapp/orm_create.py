@@ -15,8 +15,8 @@ showipintbrf = Command('show ip interface brief', 'show ip interface brief', 'Sh
 showmactable = Command('show mac address-table', 'show mac address-table', 'Shows MAC TABLE OF CISCO Device')
 showprocmem = Command('show  processes memory', 'SHOW MEM PROCESSES', 'This command show memory info of device')
 
-testcoresw01 = Device('10.50.5.57', 'testswitch01', 'Test Core Switch01')
-testcoresw02 = Device('10.50.5.58', 'testswitch02', 'Test Core Switch02')
+testcoresw01 = Device('10.50.5.57', 'testswitch01', 'Switch belongs to NetworkTestTeam')
+testcoresw02 = Device('10.50.5.57', 'ganja_coresw01', 'GanjaOffice Core Primary Switch')
 
 connuser = ConnUser('cisco', 'cisco')
 
