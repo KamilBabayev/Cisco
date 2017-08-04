@@ -60,7 +60,6 @@ ln -s /etc/uwsgi/apps-available/cisco.ini /etc/uwsgi/apps-enabled/cisco.ini
 /etc/init.d/nginx   restart ; /etc/init.d/uwsgi  restart
 
 
-ln -s /var/www/html/webapp/server.py /var/www/html/webapp/app.py
 
 
 
