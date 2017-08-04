@@ -42,18 +42,15 @@ echo " ------  Installing Nginx Uwsgi"
 apt-get install nginx uwsgi -y
 
 
+rm -rf /etc/nginx/sites-available/default ; /etc/nginx/sites-enabled/default
 
-https://raw.githubusercontent.com/KamilBabayev/Cisco/master/nginx_cisco.conf -O  /etc/nginx/sites-available/cisco_nginx.conf
+wget https://raw.githubusercontent.com/KamilBabayev/Cisco/master/nginx_cisco.conf -O  /etc/nginx/sites-available/cisco_nginx.conf
 
 ln -s /etc/nginx/sites-available/cisco_nginx.conf  /etc/nginx/sites-enabled/
 
-/etc/init.d/nginx   restart
 
 wget https://raw.githubusercontent.com/KamilBabayev/Cisco/master/cisco.ini -O /etc/uwsgi/apps-available/cisco.ini
 
 ln -s /etc/uwsgi/apps-available/cisco.ini /etc/uwsgi/apps-enabled/cisco.ini
 
 /etc/init.d/nginx   restart ; /etc/init.d/uwsgi  restart
-
-
-
