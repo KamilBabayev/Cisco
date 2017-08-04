@@ -24,7 +24,7 @@ def myerr(error):
 def login():
     form = LoginForm(request.form) 
     if request.method == 'POST':
-        adminuser = User.query.filter_by(username='admin').first()
+        adminuser = User.query.filter_by(id='1').first()
         #username = request.form['username']
         #password = request.form['password']
         username = form.username.data
