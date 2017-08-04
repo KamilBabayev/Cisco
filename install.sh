@@ -20,10 +20,6 @@ mkdir /db ;  mv /var/www/html/webapp/users.db /db  ; chown -R www-data:www-data 
 echo " -----    Creating soft app.py  link"
 ln -s /var/www/html/webapp/server.py  /var/www/html/webapp/app.py
 
-
-echo " ------  Installing nginx uwsgi"
-apt-get install uwsgi-plugin-python3
-
 echo " ------  Upgrading pip3"
 pip3 install --upgrade pip
 
@@ -44,9 +40,11 @@ pip3 install flask_wtf
 
 echo " ------  Installing Nginx Uwsgi"
 apt-get install nginx -y
-sleep(3)
+sleep 3
 apt-get install uwsgi -y
 
+echo " ------  Installing nginx uwsgi"
+apt-get install uwsgi-plugin-python3
 
 rm -rf /etc/nginx/sites-available/default ; /etc/nginx/sites-enabled/default
 
