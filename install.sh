@@ -1,5 +1,46 @@
 #!/bin/bash
 
+read -p "Enter web mgmt username: " mgmtuser
+
+
+while true;
+do
+        read -p "`echo -e '\nEnter web mgmt password:  '`" -s  mgmtpass1
+        echo ''
+        read -p "Repeat web mgmt password: " -s mgmtpass2
+        echo ''
+        if [[ "$mgmtpass1" == "$mgmtpass2" ]];
+        then
+                echo "Password set correctly !!! "
+                break
+        else
+                echo "Password does not match !!!"
+        continue
+        fi
+done
+
+
+echo ''
+echo "Enter credentials that will be used to connect to CISCO devices"
+read -p "Enter username : " ciscouser
+
+while true;
+do
+    read -p "Enter password: " -s  ciscopass1
+    echo ''
+    read -p "Repeat password: " -s ciscopass2
+    echo ''
+    if [[ "$ciscopass1" == "$ciscopass2" ]];
+    then
+        echo "Password set correctly !!! "
+        break
+    else
+        echo "Password does not match !!!"
+        continue
+    fi
+done
+
+
 echo " ------  Update package index"
 apt-get update -y
 
