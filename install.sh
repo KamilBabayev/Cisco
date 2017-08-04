@@ -43,7 +43,8 @@ echo " ------  Installing flask Form extension"
 pip3 install flask_wtf
 
 echo " ------  Installing Nginx Uwsgi"
-apt-get install nginx uwsgi -y
+apt-get install nginx -y
+apt-get install uwsgi -y
 
 
 rm -rf /etc/nginx/sites-available/default ; /etc/nginx/sites-enabled/default
