@@ -1,4 +1,8 @@
 #!/bin/bash
+# Date: August 10 2017
+
+
+
 echo ''
 
 for i in {1..60} ; do  printf '%s' '.' ; sleep .01 ; done
